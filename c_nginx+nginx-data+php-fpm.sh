@@ -1,0 +1,3 @@
+docker run -d --name nginx-php-fpm-data -v /var/cache/nginx -v /usr/share/nginx/html -v /var/log/nginx -v /var/www/html pyro/nginx-php-fpm echo Data-only container for Nginx
+docker run -d --volumes-from nginx-php-fpm-data --name php-fpm-nginx -v /var/run/php5-fpm.sock pyro/php-fpm-nginx
+docker run -d --volumes-from nginx-php-fpm-data --volumes-from php-fpm-nginx -p 80:80 --name nginx-php-fpm pyro/nginx-php-fpm
