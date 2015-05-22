@@ -10,7 +10,8 @@ FROM pyro/ubuntu
 ENV CB_RELEASE_URL	http://builder.hq.couchbase.com/get
 # The version ov package with buld number
 ENV CB_PACKAGE		couchbase-server-enterprise_debian7_x86_64_3.0.3-1718-rel.deb
-
+# set noninteractive mode
+ENV DEBIAN_FRONTEND noninteractive
 # add Couchbase startup script
 COPY build/couchbase-start /usr/local/bin/couchbase-start
 

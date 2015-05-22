@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+            $(function() {
+                window.WebSocket = window.WebSocket || window.MozWebSocket;
+ 
+                var websocket = new WebSocket('ws://127.0.0.1:9000',
+					      'custom-protocol');
+	    
+                websocket.onopen = function () {
+                    $('h1').css('color', 'green');
+
+		    obj = {};
+		    obj['username'] = 'user1';
+		    obj['project'] = 'pdb';
+		    obj['db_ip'] = '127.0.0.1';
+		    obj['db_user'] = 'io';
+		    obj['db_pass'] = 'pass';
+		    obj['db_doc_key'] = '1';
+		    
+		    data = JSON.stringify(obj);
+                    websocket.send(data);
+		    console.log("sent: ");
+		    console.log(obj)
+                };
+
+                websocket.onerror = function () {
+                    $('h1').css('color', 'red');
+                };
+
+                websocket.onclose = function () {
+		    console.log("closed");
+                };
+
+
+                websocket.onmessage = function (message) {
+                    console.log(message.data);
+                    $('div').append($('<p>', { text: message.data }));
+                };
+                
+		$('#close').click(function(e) {
+		    alert("closing the connection. say good bye");
+		    webSocket.close();
+		});
+
+ 
+
+                $('#send').click(function(e) {
+                    e.preventDefault();
+		    obj = {};
+		    obj['message'] = $('#message').val();
+		    data = $('#message').val();
+                    websocket.send(data);
+		    console.log("sent: ");
+		    console.log(data)
+                });
+            });
+    </script>
+  </head>
+  <body>
+    <h1>WebSockets test</h1>
+    <form>
+      <input type="text" id="message" placeholder="message" value="message"/>
+      <br>
+      <button id='send'>Send</button>
+      <button id='close'> Close </button>
+    </form>
+    <div></div>
+  </body>
+</html>

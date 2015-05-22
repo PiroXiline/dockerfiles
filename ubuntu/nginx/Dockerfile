@@ -30,6 +30,6 @@ CMD ["nginx"]
 # For phusion/baseimage
 # CMD ["/sbin/my_init"]
 
-# Build: docker build -t="pyro/nginx" .
+# Build: docker build -t="pyro/ubuntu-nginx" .
 # Create data conteiner like: docker run -d --name nginx-data -v /var/cache/nginx -v /usr/share/nginx/html -v /var/log/nginx -v /var/www/html pyro/nginx echo Data-only container for Nginx
 # To launch: docker run -d --volumes-from nginx-data --volumes-from php-fpm-nginx --name nginx pyro/nginx
