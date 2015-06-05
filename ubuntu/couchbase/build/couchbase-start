@@ -8,13 +8,12 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Create directories where couchbase stores its data
-cd /opt/couchbase
-mkdir -p var/lib/couchbase \
-         var/lib/couchbase/config \
-         var/lib/couchbase/data \
-         var/lib/couchbase/stats \
-         var/lib/couchbase/logs \
-         var/lib/moxi
+mkdir -p /opt/couchbase/var/lib/couchbase \
+         /opt/couchbase/var/lib/couchbase/config \
+         /opt/couchbase/var/lib/couchbase/data \
+         /opt/couchbase/var/lib/couchbase/stats \
+         /opt/couchbase/var/lib/couchbase/logs \
+         /opt/couchbase/var/lib/moxi
 chown -R couchbase:couchbase var
 
 # Couchbase normally expects the following changes to ulimits:
