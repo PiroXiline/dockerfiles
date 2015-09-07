@@ -1,4 +1,4 @@
-FROM pyro/phusion-baseimage
+FROM pyro/ubuntu
 # PHP-FPM for nginx & nginx-data containers
 ENV DEBIAN_FRONTEND noninteractive
 RUN \
